@@ -1,26 +1,25 @@
-**
- * Count the occurrences of items in an array and return a frequency map.
- * @param {Array<unknown>} arr - Input array.
- * @returns {Record<string, number>} Frequency map.
+/**
+ * Conta a frequência de cada elemento em um array
+ * @param {Array} arr - Array de entrada
+ * @returns {Map} Mapa com a contagem
  */
 function countFrequency(arr) {
     if (!Array.isArray(arr)) {
         throw new TypeError('Expected an Array.');
     }
-    const frequencyMap = {};
+    const frequencyMap = new Map();
 
     for (const item of arr) {
-        const key = String(item);
-        frequencyMap[key] = (frequencyMap[key] ?? 0) + 1;
+        frequencyMap.set(item, (frequencyMap.get(item) || 0) + 1);
     }
 
     return frequencyMap;
 }
 
 /**
- * Remove duplicate values from an array while preserving order.
- * @param {Array<unknown>} arr - Input array.
- * @returns {Array<unknown>} Array with duplicates removed.
+ * Remove valores duplicados mantendo a ordem
+ * @param {Array} arr - Array de entrada
+ * @returns {Array} Array sem duplicados
  */
 function removeDuplicates(arr) {
     if (!Array.isArray(arr)) {
@@ -29,5 +28,11 @@ function removeDuplicates(arr) {
     return [...new Set(arr)];
 }
 
-console.log(countFrequency([1, 2, 2, 3, 3, 3]));
-console.log(removeDuplicates([1, 2, 2, 3, 3, 3]));
+// Testes
+const testArray = [1, 2, 2, 3, 3, 3];
+
+console.log("=== Contagem de Frequência (Map) ===");
+console.log(countFrequency(testArray));
+
+console.log("\n=== Remoção de Duplicados ===");
+console.log(removeDuplicates(testArray));
