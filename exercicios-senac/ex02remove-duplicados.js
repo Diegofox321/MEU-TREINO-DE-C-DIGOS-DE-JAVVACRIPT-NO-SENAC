@@ -36,3 +36,29 @@ console.log(countFrequency(testArray));
 
 console.log("\n=== Remoção de Duplicados ===");
 console.log(removeDuplicates(testArray));
+
+/**
+ * Remove duplicados usando uma função de chave personalizada
+ * @param {Array} arr - Array de entrada
+ * @param {Function} keyFn - Função que extrai a chave
+ * @returns {Array} Array sem duplicados
+ */
+function removeDuplicatesBy(arr, keyFn) {
+    if (!Array.isArray(arr)) {
+        throw new TypeError('Expected an Array.');
+    }
+    const seen = new Set();
+    return arr.filter(item => {
+        const key = keyFn(item);
+        if (seen.has(key)) {
+            return false;
+        }
+        seen.add(key);
+        return true;
+    });
+}
+
+// Atualizar exports
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = { countFrequency, removeDuplicates, removeDuplicatesBy };
+}
